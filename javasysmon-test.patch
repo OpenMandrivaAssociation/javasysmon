@@ -1,0 +1,31 @@
+--- ./build.xml.orig	2013-10-29 21:30:00.000000000 -0600
++++ ./build.xml	2013-10-29 22:00:00.000000000 -0600
+@@ -27,7 +27,7 @@
+       <classpath refid="test.classpath"/>
+       <src path="src/test/java" />
+     </javac>
+-    <copy todir="target/test-classes">
++    <copy todir="target/test-classes/com/jezhumble/javasysmon">
+       <fileset dir="src/test/resources"/>
+     </copy>
+   </target>
+--- ./src/test/java/com/jezhumble/javasysmon/LinuxProcessInfoParserTest.java.orig	2013-10-29 21:30:00.000000000 -0600
++++ ./src/test/java/com/jezhumble/javasysmon/LinuxProcessInfoParserTest.java	2013-10-29 22:00:00.000000000 -0600
+@@ -97,6 +97,6 @@ public class LinuxProcessInfoParserTest
+ 
+     private String getTestFileContents(String filename) throws IOException
+     {
+-        return fileUtils.slurpFromInputStream(ClassLoader.getSystemClassLoader().getResourceAsStream(filename));
++        return fileUtils.slurpFromInputStream(getClass().getResourceAsStream(filename));
+     }
+ }
+--- ./src/test/java/com/jezhumble/javasysmon/StubFileUtils.java.orig	2013-03-19 21:50:30.000000000 -0600
++++ ./src/test/java/com/jezhumble/javasysmon/StubFileUtils.java	2013-10-29 22:00:00.000000000 -0600
+@@ -31,6 +31,6 @@ public class StubFileUtils extends FileU
+     }
+ 
+     private InputStream getTestFile(String filename) {
+-        return ClassLoader.getSystemClassLoader().getResourceAsStream(filename);        
++        return getClass().getResourceAsStream(filename);        
+     }
+ }
